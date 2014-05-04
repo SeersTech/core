@@ -1,15 +1,10 @@
+var http = require('http');
 var httpProxy = require('http-proxy');
 
-var targets = {
-    'nodeServer' : {
+httpProxy.createServer({
+    target : {
         host : 'localhost',
         port : 8081
     }
-};
+}).listen(80);
 
-var proxyPort = 80;
-console.log('1');
-var proxyServer = httpProxy.createServer(function(req, res, proxy) {
-    proxy.proxyRequest(req, res, targets.nodeServer);
-    console.log('22');
-}).listen(proxyPort);
